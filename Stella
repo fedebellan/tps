@@ -1,0 +1,29 @@
+<html>
+ <head>
+   <meta charset = "utf-8">
+   <title>Stella</title>
+ </head>
+ <body>
+   <canvas id = "Stella" width = "200" height = "200" 
+     style = "border: 1px solid Black;">
+   </canvas>
+   <script>
+     const canvas = document.getElementById("Stella");
+     const context = canvas.getContext("2d")
+
+     context.beginPath(); 
+     context.moveTo(35,35);
+     context.lineTo(155,155);
+     context.lineTo(100,0);
+     context.lineTo(45,155)
+     context.lineTo(165,35);
+     context.lineTo(35,35);
+     context.closePath();
+
+     context.fillStyle="#ff00ff";
+     context.fill();
+     context.stroke();
+     
+   </script>
+ </body>
+</html>
