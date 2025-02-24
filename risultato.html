@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Risultato Anagrafica con Collection dati</title>
+</head>    
+<style>
+        body {
+            background-color: #aaf4f4;
+            font-weight: bold;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #6da7e5;
+        }
+        th, td {
+            padding: 10%;
+            border: 5% solid #3a4ece;
+            text-align: center;
+        }
+        th {
+            background-color: #125390;
+        }
+        h1 {
+            color: rgb(5, 9, 117);
+            text-align: center;
+            padding-top: 15%;
+            padding-bottom: 15%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dati</h1>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="6" style="text-align: center">Dati personali</th>
+                <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Data di Nascita</th>
+                <th>Indirizzo</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+        </tr>
+        </thead>
+        <tbody id="datiConferma"></tbody>
+    </table>
+
+    <script>
+        const dati = JSON.parse(localStorage.getItem('datiAnagrafici'));
+        if (dati && dati.length > 0) {
+            let output = '';
+            let i = 0;
+            while (i < dati.length) {
+                output += `<tr>
+                            <td>${dati[i]}</td>
+                            <td>${dati[i + 1]}</td>
+                            <td>${dati[i + 2]}</td>
+                            <td>${dati[i + 3]}</td>
+                            <td>${dati[i + 4]}</td>
+                            <td>${dati[i + 5]}</td>
+                        </tr>`;
+                i += 6;
+            }
+            document.getElementById("datiConferma").innerHTML = output;
+        } else {
+            document.getElementById("datiConferma").innerHTML = "<tr><td colspan='6'>Nessun dato è stato trovato.</td></tr>";
+        }
+    </script>
+</body>
+</html>
+
