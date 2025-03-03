@@ -1,139 +1,87 @@
 
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html>
-    <head>
-        <title>Anagrafica con Collection oggetti</title>
-    </head>
-    <style>
-        h1 {
-            color: rgb(0, 0, 0);
-            text-align: center;
-            font-size: 28px;
-            padding-top: 5%;
-            padding-bottom: 10%;
-            font-weight: bold;
-        }
-    </style>
-    <h1>Anagrafica con Collection oggetti</h1>
-    Quante persone vuoi inserire?
-    <input type="text" id="personeDaInserire">
-    <button onclick="genera()" value="cliccami">premi</button>
-    
-    <script>
-        function validaNomeCognome(str) {
-            const regex = /^[a-zA-Z\s]+$/;
-            return regex.test(str);
-        }
-        
-        function validaDataDiNascita(data) {
-            const regex = /^\d{2}\/\d{2}\/\d{4}$/;
-            return regex.test(data);
-        }
-        
-        function validaIndirizzo(indirizzo) {
-            const regex = /^[a-zA-Z\s]+$/;
-            return regex.test(indirizzo);
-        }
-        
-        function validaEmail(email) {
-            const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            return regex.test(email);
-        }
-        
-        function validaPassword(password) {
-            const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-            return regex.test(password);
-        }
-        
-        function genera() {
-            let numero = parseInt(document.getElementById("personeDaInserire").value, 10);
-            const dati = [];
-        
-            for (let i = 0; i < numero; i++) {
-                let nome;
-                do {
-                    nome = prompt('inserisci il nome');
-                    if (nome == null) {
-                        alert('inserimento fallito');
-                        return;
-                    }
-                    if (!validaNomeCognome(nome)) {
-                        alert('nome non valido, inserisci solo lettere e spazi');
-                    }
-                } while (!validaNomeCognome(nome));
-        
-                dati.push(nome);
-        
-                let cognome;
-                do {
-                    cognome = prompt('inserisci il cognome');
-                    if (cognome == null) {
-                        alert('inserimento fallito');
-                        return;
-                    }
-                    if (!validaNomeCognome(cognome)) {
-                        alert('inserimento fallito, inserisci solo lettere e spazi');
-                    }
-                } while (!validaNomeCognome(cognome));
-        
-                dati.push(cognome);
-        
-                let dataDiNascita;
-                do {
-                    dataDiNascita = prompt('inserisci la data di nascita nel formato dd/mm/yyyy');
-                    if (dataDiNascita == null) {
-                        alert('inserimento fallito');
-                        return;
-                    }
-                    if (!validaDataDiNascita(dataDiNascita)) {
-                        alert('data di nascita non valida, inseriscila nel formato dd/mm/yyyy');
-                    }
-                } while (!validaDataDiNascita(dataDiNascita));
-        
-                dati.push(dataDiNascita);
-        
-                let indirizzo;
-                do {
-                    indirizzo = prompt('inserisci il via e il numero civico separati da uno spazio (es. "via roma 12")');
-                    if (indirizzo == null) {
-                        alert('inserimento fallito');
-                        return;
-                    }
-                } while (!indirizzo);
-        
-                dati.push(indirizzo);
-        
-                let email;
-                do {
-                    email = prompt('inserisci la mail');
-                    if (email == null) {
-                        alert('inserimento fallito');
-                        return;
-                    }
-                    if (!validaEmail(email)) {
-                        alert('email non valida, inserisci un\'email corretta');
-                    }
-                } while (!validaEmail(email));
-        
-                dati.push(email);
-        
-                let password;
-                do {
-                    password = prompt('inserisci la password');
-                    if (password == null) {
-                        alert('esecuzione annullata');
-                        return;
-                    }
-                    if (!validaPassword(password)) {
-                        alert('password non valida, deve avere almeno 8 caratteri, numeri, lettere (maiuscole e minuscole) e almeno un carattere speciale');
-                    }
-                } while (!validaPassword(password));
-        
-                dati.push(password);
-            }
+<head>
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
 
-            localStorage.setItem('datiAnagrafici', JSON.stringify(dati));
-            location.href = 'risultato.html';
-        }
-    </script>            
+input[type=text], input[type=password] {
+  width: 80%;
+  padding: 20px 25px;
+  margin: 5% 0;
+  display: inline-block;
+  border: 4px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  color: white;
+  padding: 10px 15px;
+  margin: 5% 0;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+.registrazione {
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<h2>Informazioni personali</h2>
+
+<div class="registrazione">
+  <label for="nome"><b>Nome</b></label>
+  <input type="text" id="nome" placeholder="Inserisci il nome" name="nome" required>
+  
+  <label for="cognome"><b>Cognome</b></label>
+  <input type="text" id="cognome" placeholder="Inserisci il cognome" name="cognome" required>
+
+  <label for="eta"><b>Età</b></label>
+  <input type="text" id="eta" placeholder="Inserisci l'età" name="eta" required>
+
+  <label for="datadinascita"><b>Datadinascita</b></label>
+  <input type="date" id="datadinascita" name="datadinascita" required>
+  <p>
+    <label for="indirizzo"><b>Indirizzo</b></label>
+    <input type="text" id="indirizzo" placeholder="Inserisci l'indirizzo" name="indirizzo" required>
+  </p>
+
+  <label for="email"><b>Email</b></label>
+  <input type="text" id="email" placeholder="Inserisci la mail" name="email" required>
+
+  <label for="psw"><b>Password</b></label>
+  <input type="password" id="psw" placeholder="Inserisci la password" name="psw" required>
+    
+  <button type="button" onclick="salvaUtenti()">salva utente nell'array</button>
+  <button type="button" onclick="invia()">invia utenti</button>
+</div>
+
+<script>
+    let vettoreDati = [];
+    function salvaUtenti() {
+        const nome = document.getElementById("nome").value;
+        const cognome = document.getElementById("cognome").value;
+        const eta = document.getElementById("eta").value;
+        const datadinascita = document.getElementById("datadinascita").value;
+        const indirizzo = document.getElementById("indirizzo").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("psw").value;
+
+        const dati = { Nome: nome, Cognome: cognome, Età: eta, Datadinascita: datadinascita , Indirizzo: indirizzo, Email: email, Password: password};
+        vettoreDati.push(dati);
+        console.log(vettoreDati);
+    }
+   
+    function invia() {
+        localStorage.setItem("vettoreDati", JSON.stringify(vettoreDati));
+        window.location.href = "risultato.html";
+    }  
+</script>
+
+</body>
 </html>
